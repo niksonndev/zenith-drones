@@ -25,11 +25,7 @@ function CheckoutProduct({ id, items }: Props) {
   return (
     <div className='flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center'>
       <div className='relative h-44 w-44'>
-        <Image
-          src={urlFor(items[0].image[0]).url()}
-          layout='fill'
-          objectFit='contain'
-        />
+        <Image src={urlFor(items[0].image[0]).url()} layout='fill' objectFit='contain' />
       </div>
 
       <div className='flex flex-1 items-end lg:items-center'>
@@ -54,10 +50,7 @@ function CheckoutProduct({ id, items }: Props) {
               currency='USD'
             />
           </h4>
-          <button
-            className='text-blue-500 hover:underline'
-            onClick={removeItemFromBasket}
-          >
+          <button className='text-blue-500 hover:underline' onClick={removeItemFromBasket}>
             Remove
           </button>
         </div>

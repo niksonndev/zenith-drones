@@ -53,8 +53,7 @@ const Home = ({ categories, products }: Props) => {
                         ? 'borderGradient bg-[#35383C] text-white'
                         : 'border-b-2 border-[#35383C] text-[#747474]'
                     }`
-                  }
-                >
+                  }>
                   {category.title}
                 </Tab>
               ))}

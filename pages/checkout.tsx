@@ -17,7 +17,7 @@ function Checkout() {
   const basketTotal = useSelector(selectBasketTotal);
   const router = useRouter();
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState(
-    {} as { [key: string]: Product[] }
+    {} as { [key: string]: Product[] },
   );
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +37,7 @@ function Checkout() {
       '/api/checkout_sessions',
       {
         items: items,
-      }
+      },
     );
 
     // Internal server error
@@ -49,6 +49,9 @@ function Checkout() {
     // Redirect to checkout
     const stripe = await getStripe();
     const { error } = await stripe!.redirectToCheckout({
+      // Make the id field from the Checkout Session creation API response
+      // available to this file, so you can provide it as parameter here
+      // instead of the {{CHECKOUT_SESSION_ID}} placeholder
       sessionId: checkoutSessions.id,
     });
 
@@ -75,10 +78,7 @@ function Checkout() {
           <p className='my-4'>Free delivery and returns.</p>
 
           {items.length === 0 && (
-            <Button
-              title='Continue Shopping'
-              onClick={() => router.push('/')}
-            />
+            <Button title='Continue Shopping' onClick={() => router.push('/')} />
           )}
         </div>
 
@@ -122,9 +122,7 @@ function Checkout() {
               </div>
 
               <div className='my-14 space-y-4'>
-                <h4 className='text-xl font-semibold'>
-                  How would you like to check out?
-                </h4>
+                <h4 className='text-xl font-semibold'>How would you like to check out?</h4>
                 <div className='flex flex-col gap-4 md:flex-row'>
                   <div className='order-2 flex flex-1 flex-col items-center rounded-xl bg-gray-200 p-8 py-12 text-center'>
                     <h4 className='mb-4 flex flex-col text-xl font-semibold'>
@@ -134,8 +132,8 @@ function Checkout() {
                     </h4>
                     <Button title='Check Out with Apple card Monthly Installments' />
                     <p className='mt-2 max-w-[240px] text-[13px]'>
-                      $0.00 due today, which includes applicable full-price
-                      items, down payments, shippin, and taxes.
+                      $0.00 due today, which includes applicable full-price items, down payments,
+                      shippin, and taxes.
                     </p>
                   </div>
 
