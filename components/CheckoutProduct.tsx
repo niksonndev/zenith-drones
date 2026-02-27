@@ -2,6 +2,9 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { urlFor } from '../sanity';
 import Currency from 'react-currency-formatter';
+import { removeFromBasket } from '../redux/basketSlice';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 interface Props {
   items: Product[];
@@ -9,8 +12,18 @@ interface Props {
 }
 
 function CheckoutProduct({ id, items }: Props) {
+  const dispatch = useDispatch();
+
+  const removeItemFromBasket = () => {
+    dispatch(removeFromBasket({ id }));
+
+    toast.error(`${items[0].title} removed form basket`, {
+      position: 'bottom-center',
+    });
+  };
+
   return (
-    <div>
+    <div className='flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center'>
       <div className='relative h-44 w-44'>
         <Image
           src={urlFor(items[0].image[0]).url()}
@@ -34,13 +47,19 @@ function CheckoutProduct({ id, items }: Props) {
             <ChevronDownIcon className='h-6 w-6' />
           </p>
         </div>
-        <div>
-          <h4>
+        <div className='flex flex-col items-end space-y-4'>
+          <h4 className='text-xl font-semibold lg:text-2xl'>
             <Currency
               quantity={items.reduce((total, item) => total + item.price, 0)}
               currency='USD'
             />
           </h4>
+          <button
+            className='text-blue-500 hover:underline'
+            onClick={removeItemFromBasket}
+          >
+            Remove
+          </button>
         </div>
       </div>
     </div>
