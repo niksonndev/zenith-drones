@@ -22,24 +22,18 @@ This project is made using:
 yarn
 ```
 
-2. install sanity if you don't already have it and run the sanity cms
-
-```bash
-npm i -g sanity && yarn start
-```
-
-3. navigate to /appleredesign and install the dependencies there too
-
-```bash
-cd /appleredesign && yarn
-```
-
-4. add enviroment variables:
+2. add enviroment variables:
 
 - Create your .env file based on the .env.example.
 - You'll need a stripe account [Stripe](https://stripe.com/) if you want to test everything
 
-5. run the development server:
+3. install: Sanity CMS dependencies; Sanity itself; & run it
+
+```bash
+cd /appleredesign && yarn && npm i -g sanity && yarn start
+```
+
+4. run the development server:
 
 ```bash
 yarn dev
