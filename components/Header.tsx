@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { SearchIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/outline';
+import { ShoppingBagIcon, UserIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/24/outline';
 import { useSelector } from 'react-redux';
 import { selectBasketItems } from '../redux/basketSlice';
 
@@ -24,7 +24,7 @@ function Header() {
         <a href='headerLink'>Business</a>
       </div>
       <div className='flex items-center justify-center gap-x-4 md:w-1/5'>
-        <SearchIcon className='headerIcon' />
+        <MagnifyingGlassCircleIcon className='headerIcon' />
         <Link href='/checkout'>
           <div className='relative cursor-pointer'>
             {items.length > 0 && (
