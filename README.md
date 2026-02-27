@@ -1,4 +1,4 @@
-This project is a redesign of the Apple website, created to practice modern web development using React, Next.js, TypeScript, and other cutting-edge technologies.
+This project is a redesign of the Apple website, created to practice the use of: Redux; Sanity; Stripe; Best practices
 
 ## ✨ Techs
 
@@ -22,16 +22,30 @@ This project is made using:
 yarn
 ```
 
-2. add enviroment variables:
+2. install sanity if you don't already have it and run the sanity cms
+
+```bash
+npm i -g sanity && yarn start
+```
+
+3. navigate to /appleredesign and install the dependencies there too
+
+```bash
+cd /appleredesign && yarn
+```
+
+4. add enviroment variables:
 
 - Create your .env file based on the .env.example.
-- You'll need a sanity account [Sanity](https://www.sanity.io/) and a stripe account [Stripe](https://stripe.com/)
+- You'll need a stripe account [Stripe](https://stripe.com/) if you want to test everything
 
-3. run the development server:
+5. run the development server:
 
 ```bash
 yarn dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) and [http://localhost:3333](http://localhost:3333) with your browser to see the result.
 
 ## 🤝 Contributing
 
