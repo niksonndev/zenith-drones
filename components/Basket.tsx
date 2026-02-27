@@ -1,4 +1,4 @@
-import { ShoppingBagIcon } from '@heroicons/react/outline';
+import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { selectBasketItems } from '../redux/basketSlice';

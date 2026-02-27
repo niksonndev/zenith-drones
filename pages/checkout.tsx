@@ -7,7 +7,7 @@ import CheckoutProduct from '../components/CheckoutProduct';
 import Header from '../components/Header';
 import { selectBasketItems, selectBasketTotal } from '../redux/basketSlice';
 import Currency from 'react-currency-formatter';
-import { ChevronDownIcon } from '@heroicons/react/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { Stripe } from 'stripe';
 import { fetchPostJSON } from '../utils/api-helpers';
 import getStripe from '../utils/get-stripejs';

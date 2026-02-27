@@ -9,17 +9,17 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "2.0.17",
-    "@portabletext/react": "^1.0.6",
+    "@portabletext/react": "^3.0.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@sanity/image-url": "^1.0.1",
     "@stripe/stripe-js": "^1.36.0",
     "next": "latest",
     "next-sanity": "^0.8.4",
-    "react": "18.1.0",
+    "react": "18.2.0",
     "react-currency-formatter": "^1.1.0",
-    "react-dom": "18.1.0",
-    "react-hot-toast": "^2.3.0",
-    "react-redux": "^8.0.2",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "react-redux": "^8.0.5",
     "stripe": "^10.8.0"
   },
   "devDependencies": {
