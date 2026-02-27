@@ -1,27 +1,46 @@
-# Next.js + Tailwind CSS Example
+This project is a redesign of the Apple website, created to practice modern web development using React, Next.js, TypeScript, and other cutting-edge technologies.
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## ✨ Techs
 
-## Deploy your own
+This project is made using:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+- [React](https://reactjs.org)
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux](https://redux.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Headlessui](https://headlessui.dev/)
+- [Heroicons](https://heroicons.com/)
+- [Sanity](https://www.sanity.io/)
+- [Stripe](https://stripe.com/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## How to run
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+1. install the dependencies:
 
 ```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
+yarn
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+2. add enviroment variables:
+
+- Create your .env file based on the .env.example.
+- You'll need a sanity account [Sanity](https://www.sanity.io/) and a stripe account [Stripe](https://stripe.com/)
+
+3. run the development server:
+
+```bash
+yarn dev
+```
+
+## 🤝 Contributing
+
+Feel free to contribute! If you have ideas for new workflows, improvements, or fixes, please open an issue or submit a pull request.
+
+## Author
+
+👤 **Nikson Rotondaro**
+
+- Website: https://github.com/NRotondaro
+- Github: [@NRotondaro](https://github.com/NRotondaro)
+- LinkedIn: [https:\/\/www.linkedin.com\/in\/nikson-rotondaro\/](https://www.linkedin.com/in/nikson-rotondaro/)
