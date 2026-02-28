@@ -1,4 +1,6 @@
-export default {
+import type { ArrayDefinition } from 'sanity';
+
+const blockContent: ArrayDefinition = {
   title: 'Block Content',
   name: 'blockContent',
   type: 'array',
@@ -42,3 +44,5 @@ export default {
     },
   ],
 };
+
+export default blockContent;

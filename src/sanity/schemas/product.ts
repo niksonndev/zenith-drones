@@ -1,6 +1,7 @@
 import { RiMacbookLine } from 'react-icons/ri';
+import type { DocumentDefinition } from 'sanity';
 
-export default {
+const product: DocumentDefinition = {
   name: 'product',
   title: 'Product',
   type: 'document',
@@ -47,3 +48,5 @@ export default {
     },
   ],
 };
+
+export default product;

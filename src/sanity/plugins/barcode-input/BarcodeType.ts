@@ -1,6 +1,7 @@
+import type { ObjectDefinition } from 'sanity';
 import BarcodeInput from './BarcodeInput';
 
-export default {
+const barcodeType: ObjectDefinition = {
   name: 'barcode',
   title: 'Barcode',
   type: 'object',
@@ -51,3 +52,5 @@ export default {
     },
   ],
 };
+
+export default barcodeType;

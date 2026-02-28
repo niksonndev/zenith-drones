@@ -1,3 +1,5 @@
+/** Tipos globais do projeto (Sanity, etc.) */
+
 interface Category {
   _id: string;
   _createdAt: string;
@@ -23,7 +25,7 @@ interface Product {
   _id: string;
   _createdAt: string;
   _updatedAt: string;
-  _red: string;
+  _rev: string;
   _type: 'product';
   title: string;
   price: number;

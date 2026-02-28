@@ -1,6 +1,7 @@
 import { BiCategory } from 'react-icons/bi';
+import type { DocumentDefinition } from 'sanity';
 
-export default {
+const category: DocumentDefinition = {
   name: 'category',
   title: 'Category',
   type: 'document',
@@ -22,3 +23,5 @@ export default {
     },
   ],
 };
+
+export default category;

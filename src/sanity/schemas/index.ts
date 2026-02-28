@@ -5,8 +5,9 @@ import localeString from './locale/String';
 import localeText from './locale/Text';
 import localeBlockContent from './locale/BlockContent';
 import barcodeType from '../plugins/barcode-input/BarcodeType';
+import type { SchemaTypeDefinition } from 'sanity';
 
-export const schemaTypes = [
+export const schemaTypes: SchemaTypeDefinition[] = [
   product,
   category,
   blockContent,

@@ -1,7 +1,8 @@
+import type { ObjectDefinition } from 'sanity';
 import supportedLanguages from './supportedLanguages';
 
-export default {
-  name: 'localeText',
+const localeString: ObjectDefinition = {
+  name: 'localeString',
   type: 'object',
   fieldsets: [
     {
@@ -13,7 +14,9 @@ export default {
   fields: supportedLanguages.map((lang) => ({
     title: lang.title,
     name: lang.id,
-    type: 'text',
-    fieldset: lang.isDefault ? null : 'translations',
+    type: 'string',
+    fieldset: lang.isDefault ? undefined : 'translations',
   })),
 };
+
+export default localeString;
