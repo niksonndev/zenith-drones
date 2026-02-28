@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import Button from './Button';
 
@@ -16,12 +17,20 @@ const Landing = () => {
 
         <div className='space-x-8'>
           <Button title='Buy Now' />
-          <a className='link'>Learn More</a>
+          <Link href='#' className='link'>
+            Learn More
+          </Link>
         </div>
       </div>
 
       <div className='relative hidden h-[450px] w-[450px] transition-all duration-500 md:inline lg:h-[650px] lg:w-[600px]'>
-        <Image src='/iphone.png' layout='fill' objectFit='contain' />
+        <Image
+          src='/iphone.png'
+          alt='Product showcase'
+          fill
+          className='object-contain'
+          sizes='(max-width: 1024px) 450px, 600px'
+        />
       </div>
     </section>
   );

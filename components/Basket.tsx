@@ -1,10 +1,9 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import { selectBasketItems } from '../redux/basketSlice';
+import { useBasketStore } from '../store/useBasketStore';
 
 function Basket() {
-  const items = useSelector(selectBasketItems);
+  const items = useBasketStore((state) => state.items);
 
   if (items.length === 0) return null;
 

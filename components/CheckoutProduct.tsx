@@ -2,8 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { urlFor } from '../sanity';
 import Currency from 'react-currency-formatter';
-import { removeFromBasket } from '../redux/basketSlice';
-import { useDispatch } from 'react-redux';
+import { useBasketStore } from '../store/useBasketStore';
 import toast from 'react-hot-toast';
 
 interface Props {
@@ -12,10 +11,10 @@ interface Props {
 }
 
 function CheckoutProduct({ id, items }: Props) {
-  const dispatch = useDispatch();
+  const removeFromBasket = useBasketStore((state) => state.removeFromBasket);
 
   const removeItemFromBasket = () => {
-    dispatch(removeFromBasket({ id }));
+    removeFromBasket(id);
 
     toast.error(`${items[0].title} removed form basket`, {
       position: 'bottom-center',
@@ -25,7 +24,13 @@ function CheckoutProduct({ id, items }: Props) {
   return (
     <div className='flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center'>
       <div className='relative h-44 w-44'>
-        <Image src={urlFor(items[0].image[0]).url()} layout='fill' objectFit='contain' />
+        <Image
+          src={urlFor(items[0].image[0]).url()}
+          alt={items[0].title}
+          fill
+          className='object-contain'
+          sizes='11rem'
+        />
       </div>
 
       <div className='flex flex-1 items-end lg:items-center'>

@@ -7,8 +7,7 @@ import Basket from '../components/Basket';
 import Header from '../components/Header';
 import Landing from '../components/Landing';
 import Products from '../components/Products';
-import { fetchCategories } from '../utils/fetchCategories';
-import { fetchProducts } from '../utils/fetchProducts';
+import { getServerCategories, getServerProducts } from '../lib/sanity-server';
 
 interface Props {
   categories: Category[];
@@ -77,8 +76,10 @@ export default Home;
 
 // Backend code
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const categories = await fetchCategories();
-  const products = await fetchProducts();
+  const [categories, products] = await Promise.all([
+    getServerCategories(),
+    getServerProducts(),
+  ]);
 
   return {
     props: {

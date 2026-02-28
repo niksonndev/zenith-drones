@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import Button from '../components/Button';
 import CheckoutProduct from '../components/CheckoutProduct';
 import Header from '../components/Header';
-import { selectBasketItems, selectBasketTotal } from '../redux/basketSlice';
+import { useBasketStore } from '../store/useBasketStore';
 import Currency from 'react-currency-formatter';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { Stripe } from 'stripe';
@@ -13,8 +12,10 @@ import { fetchPostJSON } from '../utils/api-helpers';
 import getStripe from '../utils/get-stripejs';
 
 function Checkout() {
-  const items = useSelector(selectBasketItems);
-  const basketTotal = useSelector(selectBasketTotal);
+  const items = useBasketStore((state) => state.items);
+  const basketTotal = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.price, 0),
+  );
   const router = useRouter();
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState(
     {} as { [key: string]: Product[] },
