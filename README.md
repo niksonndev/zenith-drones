@@ -19,7 +19,7 @@ This project is made using:
 1. install the dependencies:
 
 ```bash
-yarn
+pnpm install
 ```
 
 2. add enviroment variables:
@@ -27,21 +27,14 @@ yarn
 - Create your .env file based on the .env.example.
 - You'll need a stripe account [Stripe](https://stripe.com/) if you want to test everything
 
-3. Install and run Sanity Studio (v3):
+3. Run the development server:
 
 ```bash
-cd appleredesign && pnpm install && pnpm dev
+pnpm dev
 ```
 
-(Or use `yarn` / `npm` if you prefer. Studio runs at http://localhost:3333.)
-
-4. run the development server:
-
-```bash
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) and [http://localhost:3333](http://localhost:3333) with your browser to see the result.
+- App: [http://localhost:3000](http://localhost:3000)
+- Sanity Studio (embedded): [http://localhost:3000/studio](http://localhost:3000/studio)
 
 ## 🤝 Contributing
 
