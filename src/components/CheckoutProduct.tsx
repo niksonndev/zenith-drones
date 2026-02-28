@@ -24,14 +24,20 @@ function CheckoutProduct({ id, items }: Props) {
 
   return (
     <div className='flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center'>
-      <div className='relative h-44 w-44'>
-        <Image
-          src={urlFor(items[0].image[0]).url()}
-          alt={items[0].title}
-          fill
-          className='object-contain'
-          sizes='11rem'
-        />
+      <div className='relative h-44 w-44 flex-shrink-0'>
+        {items[0].image?.length > 0 ? (
+          <Image
+            src={urlFor(items[0].image[0]).url()}
+            alt={items[0].title}
+            fill
+            className='object-contain'
+            sizes='11rem'
+          />
+        ) : (
+          <div className='flex h-full w-full items-center justify-center rounded bg-gray-200'>
+            <span className='text-4xl text-gray-400'>?</span>
+          </div>
+        )}
       </div>
       <div className='flex flex-1 items-end lg:items-center'>
         <div className='flex-1 space-y-4'>
@@ -51,7 +57,7 @@ function CheckoutProduct({ id, items }: Props) {
           <h4 className='text-xl font-semibold lg:text-2xl'>
             <Currency
               quantity={items.reduce((total, item) => total + item.price, 0)}
-              currency='USD'
+              currency='BRL'
             />
           </h4>
           <button className='text-blue-500 hover:underline' onClick={removeItemFromBasket}>

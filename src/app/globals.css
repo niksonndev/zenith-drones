@@ -4,6 +4,7 @@
 
 @theme {
   --font-body: "Poppins", sans-serif;
+  --font-brand: "Montserrat", sans-serif;
 }
 
 @layer base {
@@ -19,6 +20,11 @@
 
   .headerIcon {
     @apply h-6 w-6 cursor-pointer opacity-75 transition hover:opacity-100;
+  }
+
+  .logoText {
+    font-family: var(--font-brand);
+    @apply text-lg font-medium tracking-[0.2em] text-[#232428];
   }
 
   .link {

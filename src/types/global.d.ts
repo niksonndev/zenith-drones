@@ -39,4 +39,9 @@ interface Product {
     _ref: string;
   };
   image: Image[];
+  /** Technical Specs (para comparação) */
+  batteryLife?: number;
+  maxSpeed?: number;
+  cameraResolution?: string;
+  weight?: number;
 }

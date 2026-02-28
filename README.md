@@ -1,49 +1,70 @@
-This project is a redesign of the Apple website, created to practice the use of: Redux; Sanity; Stripe; Best practices
+# Zenith Drones
 
-## ✨ Techs
+E-commerce de demonstração com catálogo de produtos, carrinho e checkout via Stripe. Conteúdo gerenciado no Sanity Studio (embutido na aplicação).
 
-This project is made using:
+## ✨ Stack
 
-- [React](https://reactjs.org)
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Redux](https://redux.js.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Headlessui](https://headlessui.dev/)
-- [Heroicons](https://heroicons.com/)
-- [Sanity](https://www.sanity.io/)
-- [Stripe](https://stripe.com/)
+- **[Next.js 15](https://nextjs.org/)** (App Router) + **[React 19](https://react.dev/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[Sanity](https://www.sanity.io/)** (CMS, Studio em `/studio`)
+- **[Stripe](https://stripe.com/)** (Checkout)
+- **[Zustand](https://zustand-demo.pmnd.rs/)** (estado do carrinho)
+- **[NextAuth.js](https://next-auth.js.org/)** (autenticação)
+- **[Tailwind CSS 4](https://tailwindcss.com/)**
+- [Headless UI](https://headlessui.com/), [Heroicons](https://heroicons.com/), [react-hot-toast](https://react-hot-toast.com/)
 
-## How to run
+## 📁 Estrutura
 
-1. install the dependencies:
+- `src/app/` — rotas (home, checkout, API, studio)
+- `src/components/` — Header, Basket, Products, etc.
+- `src/sanity/` — cliente, config, schemas e plugin de barcode
+- `src/store/` — store Zustand do carrinho
+- `src/utils/` — helpers (API, Stripe)
+- `src/types/` — tipos globais (Product, Category, Image)
+
+## 🚀 Como rodar
+
+1. **Instalar dependências**
 
 ```bash
 pnpm install
 ```
 
-2. add enviroment variables:
+2. **Variáveis de ambiente**
 
-- Create your .env file based on the .env.example.
-- You'll need a stripe account [Stripe](https://stripe.com/) if you want to test everything
+- Copie `.env.example` para `.env.local`.
+- Preencha no mínimo:
+  - `NEXT_PUBLIC_SANITY_PROJECT_ID` e `NEXT_PUBLIC_SANITY_DATASET` (Sanity)
+  - `AUTH_SECRET` (NextAuth; gere com `openssl rand -base64 32`)
+  - Para checkout: `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` e `STRIPE_SECRET_KEY` ([Stripe](https://stripe.com/))
 
-3. Run the development server:
+3. **Subir o servidor**
 
 ```bash
 pnpm dev
 ```
 
-- App: [http://localhost:3000](http://localhost:3000)
-- Sanity Studio (embedded): [http://localhost:3000/studio](http://localhost:3000/studio)
+- **App:** [http://localhost:3000](http://localhost:3000)
+- **Sanity Studio:** [http://localhost:3000/studio](http://localhost:3000/studio)
 
-## 🤝 Contributing
+## 📜 Scripts
 
-Feel free to contribute! If you have ideas for new workflows, improvements, or fixes, please open an issue or submit a pull request.
+| Comando        | Descrição              |
+|----------------|------------------------|
+| `pnpm dev`     | Servidor de desenvolvimento |
+| `pnpm build`   | Build de produção      |
+| `pnpm start`   | Servidor de produção   |
+| `pnpm format`  | Formatar com Prettier  |
+| `pnpm run seed:sanity` | Insere categorias e drones fictícios no Sanity (requer `SANITY_API_TOKEN` no `.env.local`) |
 
-## Author
+## 🤝 Contribuindo
 
-👤 **Nikson Rotondaro**
+Sugestões, melhorias e correções são bem-vindas: abra uma issue ou envie um pull request.
 
-- Website: https://github.com/NRotondaro
-- Github: [@NRotondaro](https://github.com/NRotondaro)
-- LinkedIn: [https:\/\/www.linkedin.com\/in\/nikson-rotondaro\/](https://www.linkedin.com/in/nikson-rotondaro/)
+## Autor
+
+**Nikson Rotondaro**
+
+- GitHub: [@NRotondaro](https://github.com/NRotondaro)
+- LinkedIn: [nikson-rotondaro](https://www.linkedin.com/in/nikson-rotondaro/)
+- Website: [Portfolio](https://www.nikson.dev/)

@@ -1,7 +1,10 @@
-import Image from 'next/image';
+'use client';
+
 import Link from 'next/link';
 import { ShoppingBagIcon, UserIcon, MagnifyingGlassCircleIcon } from '@heroicons/react/24/outline';
 import { useBasketStore } from '@/store/useBasketStore';
+import Logo from './Logo';
+import Image from 'next/image';
 
 function Header() {
   const session = false;
@@ -10,16 +13,11 @@ function Header() {
   return (
     <header className='sticky top-0 z-30 flex w-full items-center justify-between bg-[#E7ECEE] p-4'>
       <div className='flex items-center justify-center md:w-1/5'>
-        <Link href='/'>
-          <div className='relative h-10 w-5 cursor-pointer opacity-75 transition hover:opacity-100'>
-            <Image
-              src='https://rb.gy/vsvv2o'
-              alt='Logo'
-              fill
-              className='object-contain'
-              sizes='5rem'
-            />
-          </div>
+        <Link
+          href='/'
+          className='flex cursor-pointer items-center gap-3 opacity-75 transition hover:opacity-100'>
+          <Logo width={40} height={40} className='text-[#232428]' />
+          <span className='logoText'>Zenith Drones</span>
         </Link>
       </div>
       <div className='hidden flex-1 items-center justify-center space-x-8 md:flex'>
