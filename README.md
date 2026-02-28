@@ -27,11 +27,13 @@ yarn
 - Create your .env file based on the .env.example.
 - You'll need a stripe account [Stripe](https://stripe.com/) if you want to test everything
 
-3. install: Sanity CMS dependencies; Sanity itself; & run it
+3. Install and run Sanity Studio (v3):
 
 ```bash
-cd /appleredesign && yarn && npm i -g sanity && yarn start
+cd appleredesign && pnpm install && pnpm dev
 ```
+
+(Or use `yarn` / `npm` if you prefer. Studio runs at http://localhost:3333.)
 
 4. run the development server:
 

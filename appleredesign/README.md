@@ -1,11 +1,22 @@
-# Sanity Ecommerce Content Studio
+# Sanity Studio v3 (Zenith Drones)
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+Content studio for the Zenith Drones project. Built with Sanity Studio v3.
 
-Now you can do the following things:
+## Setup
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- Check out the example frontend: [Vue/Nuxt.js](https://github.com/sanity-io/example-ecommerce-snipcart-vue)
-- [Read the blog post about this template](https://www.sanity.io/blog/e-commerce-vue-nuxt-snipcart?uutm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+```bash
+pnpm install
+# or: npm install / yarn
+```
+
+## Commands
+
+- **`pnpm dev`** or **`pnpm start`** – start the studio (default: http://localhost:3333)
+- **`pnpm build`** – build the studio for production
+
+## Config
+
+- **sanity.config.js** – Studio config (projectId, dataset, plugins, schema)
+- **sanity.cli.js** – CLI config (projectId, dataset for `sanity` commands)
+- **schemas/** – Document and object types (product, category, blockContent, locale, barcode)
+- **plugins/barcode-input/** – Custom barcode object type with preview
