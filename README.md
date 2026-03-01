@@ -11,12 +11,14 @@ E-commerce de demonstração com catálogo de produtos, carrinho e checkout via 
 - **[Zustand](https://zustand-demo.pmnd.rs/)** (estado do carrinho)
 - **[NextAuth.js](https://next-auth.js.org/)** (autenticação)
 - **[Tailwind CSS 4](https://tailwindcss.com/)**
-- [Headless UI](https://headlessui.com/), [Heroicons](https://heroicons.com/), [react-hot-toast](https://react-hot-toast.com/)
+- **[HeroUI](https://heroui.com/)** (UI: Navbar com glassmorphism, etc.)
+- **[Framer Motion](https://www.framer.com/motion/)** (animações e transições)
+- **[Lucide React](https://lucide.dev/)** (ícones no Header/Navbar)
 
 ## 📁 Estrutura
 
 - `src/app/` — rotas (home, checkout, API, studio)
-- `src/components/` — Header, Basket, Products, etc.
+- `src/components/` — Header, Basket, Products, HeroExplosion, etc.
 - `src/sanity/` — cliente, config, schemas e plugin de barcode
 - `src/store/` — store Zustand do carrinho
 - `src/utils/` — helpers (API, Stripe)

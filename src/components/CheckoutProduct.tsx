@@ -1,11 +1,10 @@
 'use client';
 
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/client';
 import Currency from 'react-currency-formatter';
 import { useBasketStore } from '@/store/useBasketStore';
-import toast from 'react-hot-toast';
+import { ChevronDown } from 'lucide-react';
 
 interface Props {
   items: Product[];
@@ -17,9 +16,6 @@ function CheckoutProduct({ id, items }: Props) {
 
   const removeItemFromBasket = () => {
     removeFromBasket(id);
-    toast.error(`${items[0].title} removed from basket`, {
-      position: 'bottom-center',
-    });
   };
 
   return (
@@ -45,12 +41,12 @@ function CheckoutProduct({ id, items }: Props) {
             <h4 className='font-semibold lg:w-96'>{items[0].title}</h4>
             <p className='flex items-end gap-x-1 font-semibold'>
               {items.length}
-              <ChevronDownIcon className='h-6 w-6 text-blue-500' />
+              <ChevronDown className='h-6 w-6 text-blue-500' />
             </p>
           </div>
           <p className='flex cursor-pointer items-end text-blue-500 hover:underline'>
             Show product details
-            <ChevronDownIcon className='h-6 w-6' />
+            <ChevronDown className='h-6 w-6' />
           </p>
         </div>
         <div className='flex flex-col items-end space-y-4'>

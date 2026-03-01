@@ -7,7 +7,7 @@ import CheckoutProduct from '@/components/CheckoutProduct';
 import Header from '@/components/Header';
 import { useBasketStore } from '@/store/useBasketStore';
 import Currency from 'react-currency-formatter';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDown } from 'lucide-react';
 import { Stripe } from 'stripe';
 import { fetchPostJSON } from '@/utils/api-helpers';
 import getStripe from '@/utils/get-stripejs';
@@ -76,7 +76,7 @@ export default function CheckoutPage() {
                   <div className='flex justify-between'>
                     <p>Subtotal</p>
                     <p>
-                      <Currency quantity={basketTotal} currency='USD' />
+                      <Currency quantity={basketTotal} currency='BRL' />
                     </p>
                   </div>
                   <div className='flex justify-between'>
@@ -88,7 +88,7 @@ export default function CheckoutPage() {
                       Estimated tax for:{' '}
                       <p className='flex cursor-pointer items-end text-blue-500 hover:underline'>
                         Enter zip code
-                        <ChevronDownIcon className='h-6 w-6' />
+                        <ChevronDown className='h-6 w-6' />
                       </p>
                     </div>
                     <p>$ -</p>
@@ -97,7 +97,7 @@ export default function CheckoutPage() {
                 <div className='flex justify-between pt-4 text-xl font-semibold'>
                   <h4>Total</h4>
                   <h4>
-                    <Currency quantity={basketTotal} currency='USD' />
+                    <Currency quantity={basketTotal} currency='BRL' />
                   </h4>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
                     <h4 className='mb-4 flex flex-col text-xl font-semibold'>
                       Pay in full
                       <span>
-                        <Currency quantity={basketTotal} currency='USD' />
+                        <Currency quantity={basketTotal} currency='BRL' />
                       </span>
                     </h4>
                     <Button

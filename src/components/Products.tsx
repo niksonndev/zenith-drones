@@ -1,12 +1,13 @@
 'use client';
 
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 import Image from 'next/image';
 import Currency from 'react-currency-formatter';
+import { motion, AnimatePresence } from 'framer-motion';
 import { urlFor } from '@/sanity/client';
 import { useBasketStore } from '@/store/useBasketStore';
-import toast from 'react-hot-toast';
 import Logo from './Logo';
+import { ShoppingCart } from 'lucide-react';
 
 interface Props {
   product: Product;
@@ -14,6 +15,7 @@ interface Props {
 
 function Products({ product }: Props) {
   const addToBasket = useBasketStore((state) => state.addToBasket);
+  const [showAdded, setShowAdded] = useState(false);
   const hasImage = product.image?.length > 0;
   const hasSpecs =
     product.batteryLife != null ||
@@ -23,9 +25,8 @@ function Products({ product }: Props) {
 
   const addItemToBasket = () => {
     addToBasket(product);
-    toast.success(`${product.title} adicionado ao carrinho`, {
-      position: 'bottom-center',
-    });
+    setShowAdded(true);
+    setTimeout(() => setShowAdded(false), 2000);
   };
 
   return (
@@ -55,10 +56,29 @@ function Products({ product }: Props) {
           </div>
           <button
             type='button'
-            className='flex h-16 w-16 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500 transition hover:opacity-90 md:h-[70px] md:w-[70px]'
+            className='relative flex h-16 w-16 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500 transition hover:opacity-90 md:h-[70px] md:w-[70px]'
             onClick={addItemToBasket}
             aria-label={`Adicionar ${product.title} ao carrinho`}>
-            <ShoppingCartIcon className='h-8 w-8 text-white' />
+            <AnimatePresence mode='wait'>
+              {showAdded ? (
+                <motion.span
+                  key='added'
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  className='text-xs font-medium text-white'>
+                  Adicionado!
+                </motion.span>
+              ) : (
+                <motion.span
+                  key='icon'
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}>
+                  <ShoppingCart className='h-8 w-8 text-white' />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </div>
         {hasSpecs && (

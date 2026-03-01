@@ -1,7 +1,7 @@
 'use client';
 
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
-import { Fragment } from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Products from './Products';
 
 interface Props {
@@ -10,38 +10,47 @@ interface Props {
 }
 
 export default function ProductsSection({ categories, products }: Props) {
-  const showProducts = (categoryIndex: number) => {
-    return products
-      .filter((product) => product.category._ref === categories[categoryIndex]._id)
-      .map((product) => <Products product={product} key={product._id} />);
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const filteredProducts = products.filter(
+    (product) => product.category._ref === categories[activeIndex]?._id,
+  );
 
   return (
-    <TabGroup>
-      <TabList className='flex justify-center'>
-        {categories.map((category) => (
-          <Tab key={category._id} as={Fragment}>
-            {({ selected }) => (
-              <button
-                id={category._id}
-                className={`whitespace-nowrap rounded-t-lg py-3 px-5 text-sm font-light outline-none md:py-4 md:px-6 md:text-base ${
-                  selected
-                    ? 'borderGradient bg-[#35383C] text-white'
-                    : 'border-b-2 border-[#35383C] text-[#747474]'
-                }`}>
-                {category.title}
-              </button>
-            )}
-          </Tab>
+    <div>
+      <div className='flex justify-center'>
+        {categories.map((category, index) => (
+          <motion.button
+            key={category._id}
+            type='button'
+            id={category._id}
+            onClick={() => setActiveIndex(index)}
+            className={`whitespace-nowrap rounded-t-lg py-3 px-5 text-sm font-light outline-none md:py-4 md:px-6 md:text-base ${
+              activeIndex === index
+                ? 'borderGradient bg-[#35383C] text-white'
+                : 'border-b-2 border-[#35383C] text-[#747474]'
+            }`}
+            whileHover={{ opacity: 0.9 }}
+            whileTap={{ scale: 0.98 }}>
+            {category.title}
+          </motion.button>
         ))}
-      </TabList>
-      <TabPanels className='mx-auto max-w-fit pt-10 pb-24 sm:px-4'>
-        {categories.map((_, index) => (
-          <TabPanel key={index} className='tabPanel'>
-            {showProducts(index)}
-          </TabPanel>
-        ))}
-      </TabPanels>
-    </TabGroup>
+      </div>
+      <div className='mx-auto max-w-fit pt-10 pb-24 sm:px-4'>
+        <AnimatePresence mode='wait'>
+          <motion.div
+            key={activeIndex}
+            className='tabPanel'
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}>
+            {filteredProducts.map((product) => (
+              <Products product={product} key={product._id} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
   );
 }

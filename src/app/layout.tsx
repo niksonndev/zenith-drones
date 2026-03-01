@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Toaster } from 'react-hot-toast';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
   title: 'Zenith Drones',
@@ -15,8 +15,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <Toaster />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

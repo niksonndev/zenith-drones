@@ -1,8 +1,8 @@
 'use client';
 
-import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useBasketStore } from '@/store/useBasketStore';
+import { ShoppingBag } from 'lucide-react';
 
 function Basket() {
   const items = useBasketStore((state) => state.items);
@@ -17,7 +17,7 @@ function Basket() {
             {items.length}
           </span>
         )}
-        <ShoppingBagIcon className='headerIcon h-8 w-8' />
+        <ShoppingBag className='h-8 w-8 headerIcon' />
       </div>
     </Link>
   );

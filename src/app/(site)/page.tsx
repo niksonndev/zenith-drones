@@ -1,6 +1,7 @@
 import { getServerCategories, getServerProducts } from '@/sanity/queries';
 import Header from '@/components/Header';
 import Basket from '@/components/Basket';
+import HeroExplosion from '@/components/HeroExplosion';
 import Landing from '@/components/Landing';
 import ProductsSection from '@/components/ProductsSection';
 
@@ -16,9 +17,8 @@ export default async function HomePage() {
     <div>
       <Header />
       <Basket />
-      <main className='relative h-[200vh] bg-[#E7ECEE]'>
-        <Landing />
-      </main>
+      <div className="pt-16">
+        <HeroExplosion />
       <section className='relative z-40 -mt-[100vh] min-h-screen bg-[#1B1B1B]'>
         <div className='space-y-10 py-16'>
           <h1 className='text-center text-4xl font-medium tracking-wide text-white md:text-5xl'>
@@ -27,6 +27,7 @@ export default async function HomePage() {
           <ProductsSection categories={categories} products={products} />
         </div>
       </section>
+      </div>
     </div>
   );
 }
