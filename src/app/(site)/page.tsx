@@ -2,7 +2,6 @@ import { getServerCategories, getServerProducts } from '@/sanity/queries';
 import Header from '@/components/Header';
 import Basket from '@/components/Basket';
 import HeroExplosion from '@/components/HeroExplosion';
-import Landing from '@/components/Landing';
 import ProductsSection from '@/components/ProductsSection';
 
 export const dynamic = 'force-dynamic';
