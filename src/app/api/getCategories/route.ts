@@ -1,13 +1,11 @@
 import { NextResponse } from 'next/server';
-import { groq } from 'next-sanity';
-import { sanityClient } from '@/sanity/client';
-
-const query = groq`*[_type == "category"] {
-  _id,
-  ...
-}`;
+import { prisma } from '@/lib/prisma';
 
 export async function GET() {
-  const categories = await sanityClient.fetch(query);
+  const categories = await prisma.category.findMany({
+    orderBy: { title: 'asc' },
+  });
+
   return NextResponse.json({ categories });
 }
+

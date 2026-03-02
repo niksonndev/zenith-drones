@@ -1,0 +1,107 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders          Order[]
+  analyticsEvents AnalyticsEvent[]
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  title     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  products  Product[]
+  kits      Kit[]
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  description      String?
+  price            Int
+  imageUrl         String?
+  batteryLife      Int?
+  maxSpeed         Int?
+  cameraResolution String?
+  weight           Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+
+  orderItems OrderItem[]
+  kitItems   KitItem[]
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  total     Int
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+  unitPrice Int
+}
+
+model Kit {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String?
+  price       Int
+  imageUrl    String?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+
+  items KitItem[]
+}
+
+model KitItem {
+  id        String   @id @default(cuid())
+  kitId     String
+  kit       Kit     @relation(fields: [kitId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  type      String
+  payload   Json?
+  createdAt DateTime @default(now())
+}
+

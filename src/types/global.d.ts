@@ -1,47 +1,27 @@
-/** Tipos globais do projeto (Sanity, etc.) */
+/** Tipos globais do projeto (modelo Prisma) */
 
 interface Category {
-  _id: string;
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  _type: 'category';
-  slug: {
-    _type: 'slug';
-    current: string;
-  };
+  id: string;
+  slug: string;
   title: string;
-}
-
-interface Image {
-  _key: string;
-  _type: 'image';
-  asset: {
-    url: string;
-  };
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }
 
 interface Product {
-  _id: string;
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  _type: 'product';
+  id: string;
   title: string;
-  price: number;
-  slug: {
-    _type: 'slug';
-    current: string;
-  };
-  description: string;
-  category: {
-    _type: 'reference';
-    _ref: string;
-  };
-  image: Image[];
+  price: number; // em centavos ou reais, dependendo da configuração
+  slug: string;
+  description?: string | null;
+  imageUrl?: string | null;
+  categoryId?: string | null;
+  category?: Category | null;
+
   /** Technical Specs (para comparação) */
-  batteryLife?: number;
-  maxSpeed?: number;
-  cameraResolution?: string;
-  weight?: number;
+  batteryLife?: number | null;
+  maxSpeed?: number | null;
+  cameraResolution?: string | null;
+  weight?: number | null; // gramas
 }
+

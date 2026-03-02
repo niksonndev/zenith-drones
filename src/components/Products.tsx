@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Currency from 'react-currency-formatter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { urlFor } from '@/sanity/client';
 import { useBasketStore } from '@/store/useBasketStore';
 import Logo from './Logo';
 import { ShoppingCart } from 'lucide-react';
@@ -16,7 +15,7 @@ interface Props {
 function Products({ product }: Props) {
   const addToBasket = useBasketStore((state) => state.addToBasket);
   const [showAdded, setShowAdded] = useState(false);
-  const hasImage = product.image?.length > 0;
+  const hasImage = !!product.imageUrl;
   const hasSpecs =
     product.batteryLife != null ||
     product.maxSpeed != null ||
@@ -34,7 +33,7 @@ function Products({ product }: Props) {
       <div className='relative h-64 w-full md:h-72'>
         {hasImage ? (
           <Image
-            src={urlFor(product.image[0]).url()}
+            src={product.imageUrl as string}
             alt={product.title}
             fill
             className='object-contain'

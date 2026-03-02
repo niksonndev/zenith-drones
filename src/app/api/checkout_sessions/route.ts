@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { urlFor } from '@/sanity/client';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2022-08-01',
@@ -14,7 +13,7 @@ export async function POST(request: Request) {
       currency: 'usd',
       product_data: {
         name: item.title,
-        images: [urlFor(item.image[0]).url()],
+        images: item.imageUrl ? [item.imageUrl] : [],
       },
       unit_amount: item.price * 100,
     },
@@ -31,7 +30,7 @@ export async function POST(request: Request) {
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/checkout`,
       metadata: {
-        images: JSON.stringify(items.map((item) => item.image[0].asset?.url ?? '')),
+        images: JSON.stringify(items.map((item) => item.imageUrl ?? '')),
       },
     };
     const checkoutSession = await stripe.checkout.sessions.create(params);
@@ -41,3 +40,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ statusCode: 500, message }, { status: 500 });
   }
 }
+

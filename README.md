@@ -6,7 +6,7 @@ E-commerce de demonstração com catálogo de produtos, carrinho e checkout via 
 
 - **[Next.js 15](https://nextjs.org/)** (App Router) + **[React 19](https://react.dev/)**
 - **[TypeScript](https://www.typescriptlang.org/)**
-- **[Sanity](https://www.sanity.io/)** (CMS, Studio em `/studio`)
+- **Postgres + [Prisma](https://www.prisma.io/)** (banco de dados e ORM)
 - **[Stripe](https://stripe.com/)** (Checkout)
 - **[Zustand](https://zustand-demo.pmnd.rs/)** (estado do carrinho)
 - **[NextAuth.js](https://next-auth.js.org/)** (autenticação)
@@ -17,12 +17,13 @@ E-commerce de demonstração com catálogo de produtos, carrinho e checkout via 
 
 ## 📁 Estrutura
 
-- `src/app/` — rotas (home, checkout, API, studio)
+- `src/app/` — rotas (home, checkout, API)
 - `src/components/` — Header, Basket, Products, HeroExplosion, etc.
-- `src/sanity/` — cliente, config, schemas e plugin de barcode
+- `src/lib/` — utilidades globais (ex.: `prisma`)
+- `src/data/` — funções de acesso a dados (queries com Prisma)
 - `src/store/` — store Zustand do carrinho
 - `src/utils/` — helpers (API, Stripe)
-- `src/types/` — tipos globais (Product, Category, Image)
+- `src/types/` — tipos globais (Product, Category, etc.)
 
 ## 🚀 Como rodar
 
@@ -36,7 +37,7 @@ pnpm install
 
 - Copie `.env.example` para `.env.local`.
 - Preencha no mínimo:
-  - `NEXT_PUBLIC_SANITY_PROJECT_ID` e `NEXT_PUBLIC_SANITY_DATASET` (Sanity)
+  - `DATABASE_URL` (Postgres, ex.: `postgresql://user:pass@localhost:5432/zenith_drones`)
   - `AUTH_SECRET` (NextAuth; gere com `openssl rand -base64 32`)
   - Para checkout: `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` e `STRIPE_SECRET_KEY` ([Stripe](https://stripe.com/))
 
@@ -47,7 +48,7 @@ pnpm dev
 ```
 
 - **App:** [http://localhost:3000](http://localhost:3000)
-- **Sanity Studio:** [http://localhost:3000/studio](http://localhost:3000/studio)
+
 
 ## 📜 Scripts
 
@@ -57,7 +58,14 @@ pnpm dev
 | `pnpm build`   | Build de produção      |
 | `pnpm start`   | Servidor de produção   |
 | `pnpm format`  | Formatar com Prettier  |
-| `pnpm run seed:sanity` | Insere categorias e drones fictícios no Sanity (requer `SANITY_API_TOKEN` no `.env.local`) |
+| `pnpm run prisma:migrate` | (sugestão) Rodar migrações Prisma para o Postgres |
+
+## 📋 Project Management
+
+O desenvolvimento é gerenciado no **Linear**.
+Desenvolvido com metodologia ágil, com milestones e sprint tracking
+
+Board do projeto: [Zenith Drones — Linear](https://linear.app/zenith-drones/project/zenith-drones-4a54a605468f)
 
 ## 🤝 Contribuindo
 

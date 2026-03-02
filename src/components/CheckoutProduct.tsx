@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { urlFor } from '@/sanity/client';
 import Currency from 'react-currency-formatter';
 import { useBasketStore } from '@/store/useBasketStore';
 import { ChevronDown } from 'lucide-react';
@@ -21,9 +20,9 @@ function CheckoutProduct({ id, items }: Props) {
   return (
     <div className='flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center'>
       <div className='relative h-44 w-44 flex-shrink-0'>
-        {items[0].image?.length > 0 ? (
+        {items[0].imageUrl ? (
           <Image
-            src={urlFor(items[0].image[0]).url()}
+            src={items[0].imageUrl as string}
             alt={items[0].title}
             fill
             className='object-contain'
