@@ -1,6 +1,6 @@
 # Zenith Drones
 
-E-commerce de demonstração com catálogo de produtos, carrinho e checkout via Stripe. Conteúdo gerenciado no Sanity Studio (embutido na aplicação).
+E-commerce de demonstração com catálogo de produtos, carrinho e checkout via Stripe. Conteúdo gerenciado diretamente via banco Postgres + Prisma.
 
 ## ✨ Stack
 

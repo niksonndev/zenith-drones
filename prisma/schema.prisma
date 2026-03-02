@@ -1,10 +1,21 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  CANCELED
 }
 
 model User {
@@ -12,6 +23,7 @@ model User {
   name      String?
   email     String   @unique
   image     String?
+  role      UserRole @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -36,6 +48,8 @@ model Product {
   slug             String   @unique
   description      String?
   price            Int
+  stock            Int      @default(0)
+  isActive         Boolean  @default(true)
   imageUrl         String?
   batteryLife      Int?
   maxSpeed         Int?
@@ -50,18 +64,32 @@ model Product {
 
   orderItems OrderItem[]
   kitItems   KitItem[]
+
+  @@index([categoryId])
+  @@index([isActive])
+  @@index([price])
 }
 
 model Order {
-  id        String   @id @default(cuid())
-  userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
-  total     Int
-  status    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String      @id @default(cuid())
+  userId         String?
+  user           User?       @relation(fields: [userId], references: [id])
+  total          Int
+  status         OrderStatus @default(PENDING)
+  customerName   String
+  customerEmail  String
+  shippingAddress String?
+  city           String?
+  state          String?
+  zipCode        String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 
   items OrderItem[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
 }
 
 model OrderItem {
@@ -72,6 +100,9 @@ model OrderItem {
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int     @default(1)
   unitPrice Int
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 model Kit {
@@ -85,6 +116,8 @@ model Kit {
   category    Category? @relation(fields: [categoryId], references: [id])
 
   items KitItem[]
+
+  @@index([categoryId])
 }
 
 model KitItem {
@@ -94,6 +127,9 @@ model KitItem {
   productId String
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int     @default(1)
+
+  @@index([kitId])
+  @@index([productId])
 }
 
 model AnalyticsEvent {
@@ -103,5 +139,8 @@ model AnalyticsEvent {
   type      String
   payload   Json?
   createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([type])
 }
 
